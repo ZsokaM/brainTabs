@@ -1,0 +1,50 @@
+:root {
+	--variablename: value
+}
+
+*,
+*:before,
+*:after {
+	box-sizing:border-box
+}
+
+html, body {
+	margin: 0;
+	padding: 0
+}
+
+.container {
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+.logo {
+    width: 50px;
+}
+
+.hero { 
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+}
+.hero-img {
+    width: 75%;
+}
+
+.btn {
+    width: 50px;
+    color: white;
+    background-color: indigo;
+    text-decoration: none;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5%;
+}
