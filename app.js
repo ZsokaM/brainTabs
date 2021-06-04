@@ -1,7 +1,16 @@
 require('dotenv').config();
+
 const express = require('express');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const bcrypt = require('bcrypt');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const flash = require('connect-flash');
+
+const User = require('./models/User.model');
 
 mongoose
   .connect(process.env.MONGODB_URI, {
@@ -25,6 +34,59 @@ app.set('view engine', 'hbs');
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+      sameSite: true,
+      httpOnly: true,
+      maxAge: 60000 
+    },
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI,
+      ttl: 60 * 60 * 24
+    })
+  })
+);
+passport.serializeUser((user, cb) => cb(null, user._id));
+ 
+passport.deserializeUser((id, cb) => {
+  User.findById(id)
+    .then(user => cb(null, user))
+    .catch(err => cb(err));
+});
+ 
+passport.use(
+  new LocalStrategy(
+    { 
+      usernameField: 'email', 
+      passwordField: 'password' 
+    },
+    (email, password, done) => {
+      
+      User.findOne({ email })
+        .then(user => {
+          if (!user) {
+            return done(null, false, { message: 'Incorrect email' });
+          }
+ 
+          if (!bcrypt.compareSync(password, user.password)) {
+            return done(null, false, { message: 'Incorrect password' });
+          }
+ 
+          return done(null, user);
+        })
+        .catch(err => done(err));
+    }
+  )
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 app.use('/', indexRouter);
 app.use('/', authRouter);

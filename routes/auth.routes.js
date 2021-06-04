@@ -1,34 +1,31 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
-const bcryptjs = require('bcryptjs');
+const passport = require('passport');
+const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const User = require('../models/User.model');
 
-router.get('/signup', (req, res) => {
-    res.render('auth/signup')
-  });
+router.get('/signup', (req, res) => { res.render('auth/signup')});
 
 router.post('/signup', (req, res, next) => {
-    const { username, email, password } = req.body;
-   
-    if (!username || !email || !password) {
-      res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
-      return;
-    }
-  
-    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-    if (!regex.test(password)) {
-      res
-        .status(500)
-        .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
-      return;
-    }
-    
-    bcryptjs
-      .genSalt(saltRounds) 
-      .then(salt => bcryptjs.hash(password, salt)) 
+  const { username, email, password } = req.body;
+ 
+  if (!username || !email || !password) {
+    res.render('auth/signup', { errorMessage: 'Indicate username, email and password' });
+    return;
+  }
+ 
+  User.findOne({ username })
+    .then(user => {
+      if (user !== null) {
+        res.render('auth/signup', { message: 'The username already exists' });
+        return;
+      }
+      bcrypt
+      .genSalt(saltRounds)
+      .then(salt => bcrypt.hashSync(password, salt))
       .then(hashedPassword => {
         return User.create({
           username,
@@ -36,20 +33,25 @@ router.post('/signup', (req, res, next) => {
           password: hashedPassword
         });
       })
-      .then(userFromDB => {
-        res.redirect('/userProfile');
-      })
-      .catch(error => {
-        if (error instanceof mongoose.Error.ValidationError) {
-          res.status(500).render('auth/signup', { errorMessage: error.message });
-        } else if (error.code === 11000) {
-          res.status(500).render('auth/signup', {
-             errorMessage: 'Username and email need to be unique. Either username or email is already used.'
-          });
-        } else {
-          next(error);
-        }
-      });
-  });
+      .then(user => res.redirect('/login'))
+    })
+    .catch(err => next(err));
+});
 
+router.get('/login', (req, res, next) => res.render('auth/login', {errorMessage: req.flash('error')}));
+
+router.post('/login',
+  passport.authenticate('local', {
+      successRedirect: '/private',
+      failureRedirect: '/login',
+      failureFlash: true
+  })
+);
+
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/login');
+});
+  
+  
 module.exports = router;
