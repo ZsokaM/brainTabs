@@ -51,12 +51,13 @@ app.use(
     })
   })
 );
-passport.serializeUser((user, cb) => cb(null, user._id));
+
+passport.serializeUser((user, done) => done(null, user._id));
  
-passport.deserializeUser((id, cb) => {
+passport.deserializeUser((id, done) => {
   User.findById(id)
-    .then(user => cb(null, user))
-    .catch(err => cb(err));
+    .then(user => done(null, user))
+    .catch(err => done(err));
 });
  
 passport.use(

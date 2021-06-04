@@ -33,7 +33,7 @@ router.post('/signup', (req, res, next) => {
           password: hashedPassword
         });
       })
-      .then(user => res.redirect('/login'))
+      .then(user => res.redirect('profile'))
     })
     .catch(err => next(err));
 });
@@ -42,15 +42,24 @@ router.get('/login', (req, res, next) => res.render('auth/login', {errorMessage:
 
 router.post('/login',
   passport.authenticate('local', {
-      successRedirect: '/private',
+      session: true,
+      successRedirect: '/profile',
       failureRedirect: '/login',
       failureFlash: true
   })
 );
 
+router.get('/profile', (req, res) => {
+  if (!req.user) {
+    res.redirect('/login'); 
+    return;
+  }
+  res.render('profile', { user: req.user });
+});
+
 router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect('/login');
+  res.redirect('/');
 });
   
   

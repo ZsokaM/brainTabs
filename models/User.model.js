@@ -22,9 +22,9 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'Tabs'
     },
-    notes: {
+    folders: {
         type: Schema.Types.ObjectId,
-        ref: 'Notes'
+        ref: 'Folders'
     }
   },
   {
