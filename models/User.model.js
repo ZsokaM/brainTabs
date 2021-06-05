@@ -27,7 +27,7 @@ const userSchema = new Schema(
     folders: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Folders",
+        ref: "Folder",
       },
     ],
   },

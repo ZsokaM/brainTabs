@@ -4,17 +4,23 @@
   <section class="side side-left">
     <a href="/newfolder"><img src="Images/add.png" width="30px" /></a>
 
-
-    {{#if user.folders}}
-    {{#each user.folders}}
-      <article>
-        {{this._id}}
-        {{this.title}}
-        {{this.description}}
-      </article>
-    {{/each}}
-    {{/if}}
-   
+    <section class="card-layout">
+      {{#each user.folders}}
+        <article class='card'>
+          <div class="card-container">
+              <h4>{{this.title}}</h4>
+              <p>{{this.keywords}}</p>
+              <div>
+                <a href="#"><img src="Images/book.png" width="30px"></a>
+                <a href="#"><img src="Images/delete.png" width="30px"></a>
+              </div>
+          </div>
+        </article>
+      {{/each}}
+    </section>
+ 
+  
+</div>
 
   </section>
   <section class="side side-right">

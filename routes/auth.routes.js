@@ -65,7 +65,18 @@ router.get("/profile", (req, res) => {
     return;
   }
 
-  res.render("users/profile", { user: req.user });
+  if (req.user.folders) {
+    User.findOne({ username: req.user.username })
+      .populate("folders")
+      .then((user) => {
+        res.render("users/profile", { user: user });
+      })
+      .catch((err) =>
+        console.log(`Err while getting a single post from the  DB: ${err}`)
+      );
+  } else {
+    res.render("users/profile", { user: req.user });
+  }
 });
 
 router.get("/logout", (req, res) => {
