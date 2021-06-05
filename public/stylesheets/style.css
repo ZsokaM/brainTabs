@@ -24,10 +24,16 @@ body {
     width: 100vw;
     font-family: 'Roboto', sans-serif;
     color: darkslategrey;
+    display: flex;
+    flex-direction: column;
 }
 
+main{
+    flex: 1 0 auto;
+}
 
 .navbar, .footer {
+    flex-shrink: 0;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -87,6 +93,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    align-content: center;
 }
 
 .form-div{
@@ -135,12 +142,21 @@ body {
     color: white;
 }
 .side{
-    height: 100vh;
+    height: 95vh;
     width: min(95%);
     padding: 2em;
 }
 .side-left{
     background-color: var(--yellOrange);
+}
+
+.folder-sep{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.side-text{
+    width: 50%;
 }
 .footer {
     color: white;

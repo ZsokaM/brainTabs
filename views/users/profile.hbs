@@ -1,0 +1,21 @@
+
+    <h1 class="main-header">My dashboard</h1>
+   
+    <section class="container">
+        <section class="side side-left">
+            <a href="/newfolder"><img src="Images/add.png" width="30px"></a>
+            
+             {{#each folder}}
+                <article>
+                    <h3>{{this.title}}</h3>
+                    <p>{{this.keywords}}</p>
+                    <p>{{this.description}}</p>
+                </article>
+             {{/each}}
+            
+        </section>
+        <section class="side side-right">
+            <a href="/newtab"><img src="Images/add.png" width="30px"></a>
+            <p>hello</p>
+        </section>  
+    </section>

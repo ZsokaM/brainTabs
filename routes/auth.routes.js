@@ -33,7 +33,7 @@ router.post('/signup', (req, res, next) => {
           password: hashedPassword
         });
       })
-      .then(user => res.redirect('profile'))
+      .then(user => res.redirect('users/profile'))
     })
     .catch(err => next(err));
 });
@@ -54,7 +54,7 @@ router.get('/profile', (req, res) => {
     res.redirect('/login'); 
     return;
   }
-  res.render('profile', { user: req.user });
+  res.render('users/profile', { user: req.user });
 });
 
 router.get('/logout', (req, res) => {

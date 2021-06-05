@@ -26,6 +26,7 @@ mongoose
 
 const indexRouter = require('./routes/index.routes');
 const authRouter = require('./routes/auth.routes');
+const userRouter = require('./routes/user.routes');
 
 const app = express();
 
@@ -91,6 +92,7 @@ app.use(flash());
 
 app.use('/', indexRouter);
 app.use('/', authRouter);
+app.use('/', userRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(`Listening on http://localhost:${process.env.PORT}`);

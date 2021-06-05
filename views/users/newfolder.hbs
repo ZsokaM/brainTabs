@@ -1,0 +1,31 @@
+<h1>New folder page</h1>
+
+<div class="folder-sep">
+    <form action="/newfolder" method="POST" class="side-text">
+        <div class="form-div">
+            <label for="title" class="form-lbl"> Folder name </label>
+            <input type="text" name="title" placeholder="Folder name" class="form-input" />
+        </div>
+         <div class="form-div">
+            <label for="keywords" class="form-lbl"> Keywords </label>
+            <input type="text" name="keywords" placeholder="Add keywords" class="form-input" />
+        </div>
+        <div class="form-div">
+            <textarea name="description" rows="5" cols="15" class="mytextarea">
+            </textarea>
+        </div>
+        <button type="submit" class="form-btn">Save</button>
+        
+        {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+        {{/if}}
+    </form>
+
+    <section>
+        <a href="/newtab"><img src="Images/add.png" width="30px"></a>
+        <p>You can add references and notes at the same time</p>
+    </section> 
+
+</div>
+
+
