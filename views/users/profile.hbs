@@ -8,11 +8,16 @@
       {{#each user.folders}}
         <article class='card'>
           <div class="card-container">
-              <h4>{{this.title}}</h4>
-              <p>{{this.keywords}}</p>
-              <div>
-                <a href="#"><img src="Images/book.png" width="30px"></a>
-                <a href="#"><img src="Images/delete.png" width="30px"></a>
+              <div class="card-header">
+                <h4>{{this.title}}</h4>
+              </div>
+              
+              <div class="card-links">
+                <a href="/profile/{{this._id}}"><img src="Images/book.png" width="30px"></a>
+                <form action="/profile/{{this._id}}/delete" method="POST">
+                  <button><img src="Images/delete.png" width="30px"></button>
+                </form>
+               
               </div>
           </div>
         </article>
