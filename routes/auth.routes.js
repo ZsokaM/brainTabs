@@ -7,6 +7,7 @@ const saltRounds = 10;
 
 const User = require("../models/User.model");
 const Folder = require("../models/Folders.model");
+const { isAuthenticated } = require("../Middleware/isAuthenticated");
 
 router.get("/signup", (req, res) => {
   res.render("auth/signup");
@@ -40,7 +41,7 @@ router.post("/signup", (req, res, next) => {
             folders: [],
           });
         })
-        .then((user) => res.redirect("/profile"));
+        .then(() => res.redirect("/profile"));
     })
     .catch((err) => next(err));
 });
@@ -59,12 +60,7 @@ router.post(
   })
 );
 
-router.get("/profile", (req, res) => {
-  if (!req.isAuthenticated()) {
-    res.redirect("/login");
-    return;
-  }
-
+router.get("/profile", isAuthenticated, (req, res) => {
   if (req.user.folders !== []) {
     User.findOne({ username: req.user.username })
       .populate("folders")
