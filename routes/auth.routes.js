@@ -65,7 +65,7 @@ router.get("/profile", (req, res) => {
     return;
   }
 
-  if (req.user.folders) {
+  if (req.user.folders !== []) {
     User.findOne({ username: req.user.username })
       .populate("folders")
       .then((user) => {

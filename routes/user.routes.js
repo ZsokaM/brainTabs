@@ -3,12 +3,9 @@ const router = express.Router();
 
 const Folder = require("../models/Folders.model");
 const User = require("../models/User.model");
+const { isAuthenticated } = require("../Middleware/isAuthenticated");
 
-router.get("/newfolder", (req, res) => {
-  if (!req.isAuthenticated()) {
-    res.redirect("/login");
-    return;
-  }
+router.get("/newfolder", isAuthenticated, (req, res) => {
   res.render("users/newfolder", { user: req.user });
 });
 
@@ -32,20 +29,19 @@ router.post("/newfolder", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.get("/profile/:folderId", (req, res) => {
+router.get("/profile/:folderId", isAuthenticated, (req, res) => {
   const { folderId } = req.params;
 
   Folder.findById(folderId)
     .then((folder) => {
-      console.log(folder);
       res.render("users/show-folder", folder);
     })
     .catch((err) =>
-      console.log(`Errpr while getting posts of user from DB: ${err}`)
+      console.log(`Error while getting posts of user from DB: ${err}`)
     );
 });
 
-router.post("/profile/:folderId/delete", (req, res, next) => {
+router.post("/profile/:folderId/delete", isAuthenticated, (req, res, next) => {
   const { folderId } = req.params;
 
   Folder.findByIdAndDelete(folderId)
@@ -53,5 +49,32 @@ router.post("/profile/:folderId/delete", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router;
+router.get("/:folderId/edit", (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    res.redirect("/login");
+    return;
+  }
+  const { folderId } = req.params;
+
+  Folder.findById(folderId)
+    .then((folderToEdit) => {
+      res.render("users/folder-edit", { folder: folderToEdit });
+    })
+    .catch((err) => next(err));
+});
+
+router.post("/:folderId/edit", (req, res, next) => {
+  const { folderId } = req.params;
+
+  const { title, keywords, description } = req.body;
+
+  Folder.findByIdAndUpdate(
+    folderId,
+    { title, keywords, description },
+    { new: true }
+  )
+    .then(() => res.redirect(`/profile/${folderId}`))
+    .catch((err) => next(err));
+});
+
 module.exports = router;

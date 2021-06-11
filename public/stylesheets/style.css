@@ -76,7 +76,7 @@ main {
 }
 
 .btn {
-  width: 30px;
+  width: 50px;
   color: white;
   background-color: var(--darkOrange);
   text-decoration: none;
@@ -168,25 +168,32 @@ main {
 
 .card {
   margin: 1em;
-}
-
-.card-container {
+  width: 150px;
   padding: 2px 16px;
-
-  /* border: 2px solid var(--frenchViolet); */
-}
-
-.card-header {
-  background-image: url("/Images/tabs.png");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  min-height: 100px;
-  min-width: 100px;
-  align-content: center;
+  background: white;
+  border: 0.5px solid var(--frenchViolet);
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card-links {
-  text-align: right;
+  display: flex;
+  align-items: center;
+}
+
+.detail-folder {
+  margin: 1em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  width: 55vw;
+  border: 1px solid black;
+}
+
+.detail-body {
+  width: 100%;
 }
 .footer {
   color: white;

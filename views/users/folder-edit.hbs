@@ -1,0 +1,28 @@
+<h1>Edit folder page</h1>
+
+<div class="folder-sep">
+  <form action="/{{folder._id}}/edit" method="POST">
+    <div class="form-div">
+      <label> Folder name 
+      <input type="text" name="title" placeholder="{{folder.title}}"/>
+    </label>
+    </div>
+    <div class="form-div">
+      <label> Keywords 
+      <input type="text" name="keywords" value="{{folder.keywords}}" />
+    </label>
+    </div>
+    <div class="form-div">
+      <textarea name="description" class="mytextarea" value="{{folder.description}}">
+      </textarea>
+    </div>
+    <button type="submit" class="form-btn">Save</button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+
+ 
+
+</div>

@@ -1,10 +1,12 @@
-<h1>{{this.title}}</h1>
-<section>
-    <div>
-        {{this.description}}
-    </div>
-    <div>
-        {{this.keywords}}
-    </div>
-    
+<section class="detail-folder">
+    <h1>{{this.title}}</h1>
+    <section class="detail-body">
+        <div>
+            {{this.description}}
+        </div>
+        <div>
+            {{this.keywords}}
+        </div>
+    </section>
+    <a href="/{{this._id}}/edit" class="btn">Edit</a>
 </section>
