@@ -54,7 +54,6 @@ router.get("/:folderId/edit", isAuthenticated, (req, res, next) => {
 
   Folder.findById(folderId)
     .then((folderToEdit) => {
-      console.log("hello==>" + folderToEdit);
       res.render("users/folder-edit", { folder: folderToEdit });
     })
     .catch((err) => next(err));
