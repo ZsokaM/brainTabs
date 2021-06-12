@@ -98,6 +98,7 @@ app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
   res.locals.sessionUser = req.user;
+  res.locals.tinyKey = process.env.TINY_KEY;
   next();
 });
 

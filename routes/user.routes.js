@@ -49,11 +49,7 @@ router.post("/profile/:folderId/delete", isAuthenticated, (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.get("/:folderId/edit", (req, res, next) => {
-  if (!req.isAuthenticated()) {
-    res.redirect("/login");
-    return;
-  }
+router.get("/:folderId/edit", isAuthenticated, (req, res, next) => {
   const { folderId } = req.params;
 
   Folder.findById(folderId)

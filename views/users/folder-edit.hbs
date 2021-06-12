@@ -4,7 +4,7 @@
   <form action="/{{folder._id}}/edit" method="POST">
     <div class="form-div">
       <label> Folder name 
-      <input type="text" name="title" placeholder="{{folder.title}}"/>
+      <input type="text" name="title" value="{{folder.title}}"/>
     </label>
     </div>
     <div class="form-div">
@@ -13,7 +13,7 @@
     </label>
     </div>
     <div class="form-div">
-      <textarea name="description" id="editor" placeholder="{{folder.description}}">
+      <textarea name="description" id="editor" value="{{folder.description}}">
       </textarea>
     </div>
     <button type="submit" class="form-btn">Save</button>
@@ -21,8 +21,6 @@
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
-  </form>
-
- 
+  </form> 
 
 </div>

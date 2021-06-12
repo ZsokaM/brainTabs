@@ -2,9 +2,9 @@
     <h1>{{this.title}}</h1>
     <section class="detail-body">
         <div>
-            <textarea name="description" id="editor">
-                {{this.description}}
-            </textarea>
+            {{!-- <textarea name="description" id="editor"> --}}
+                {{{this.description}}}
+            {{!-- </textarea> --}}
         </div>
             
         <div>
@@ -12,5 +12,6 @@
         </div>
     </section>
     <a href="/{{this._id}}/edit" class="btn">Edit</a>
+ 
     <a href="/profile" class="btn">Back</a>
 </section>
