@@ -35,6 +35,11 @@ main {
   flex: 1 0 auto;
 }
 
+.container {
+  display: flex;
+}
+
+/* --------------------------------------------------------- */
 .navbar,
 .footer {
   flex-shrink: 0;
@@ -93,6 +98,7 @@ main {
   background-color: var(--purple);
 }
 
+/* --------------------------------------------------------- */
 .signup {
   display: flex;
   flex-direction: column;
@@ -134,10 +140,7 @@ main {
   color: red;
 }
 
-.container {
-  display: flex;
-}
-
+/* --------------------------------------------------------- */
 .main-header {
   text-align: center;
   background-color: var(--frenchViolet);
@@ -212,7 +215,7 @@ main {
   color: white;
   transform: rotateY(180deg);
 }
-
+/* --------------------------------------------------------- */
 .detail-folder {
   margin: 1em;
   padding: 1em;
@@ -225,6 +228,7 @@ main {
 .detail-body {
   width: 100%;
 }
+/* --------------------------------------------------------- */
 .footer {
   color: white;
   font-size: 1em;
