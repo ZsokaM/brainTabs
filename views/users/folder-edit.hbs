@@ -1,19 +1,22 @@
 <h1>Edit folder page</h1>
 
+
+
 <div class="folder-sep">
   <form action="/{{folder._id}}/edit" method="POST">
     <div class="form-div">
       <label> Folder name 
-      <input type="text" name="title" value="{{folder.title}}"/>
+      <input type="text" name="title" class="form-input" value="{{folder.title}}"/>
     </label>
     </div>
     <div class="form-div">
       <label> Keywords 
-      <input type="text" name="keywords" value="{{folder.keywords}}" />
+      <input type="text" name="keywords" class="form-input" value="{{folder.keywords}}" />
     </label>
     </div>
     <div class="form-div">
-      <textarea name="description" id="editor" value="{{folder.description}}">
+      <textarea name="description" class="editor" >
+        {{folder.description}}
       </textarea>
     </div>
     <button type="submit" class="form-btn">Save</button>
@@ -24,3 +27,4 @@
   </form> 
 
 </div>
+

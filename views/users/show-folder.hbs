@@ -2,16 +2,14 @@
     <h1>{{this.title}}</h1>
     <section class="detail-body">
         <div>
-            {{!-- <textarea name="description" id="editor"> --}}
-                {{{this.description}}}
-            {{!-- </textarea> --}}
+            {{{this.description}}}
         </div>
             
         <div>
             Keywords: {{this.keywords}}
         </div>
     </section>
+    
     <a href="/{{this._id}}/edit" class="btn">Edit</a>
- 
     <a href="/profile" class="btn">Back</a>
 </section>

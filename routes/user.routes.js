@@ -41,7 +41,7 @@ router.get("/profile/:folderId", isAuthenticated, (req, res) => {
     );
 });
 
-router.post("/profile/:folderId/delete", isAuthenticated, (req, res, next) => {
+router.post("/profile/:folderId/delete", (req, res, next) => {
   const { folderId } = req.params;
 
   Folder.findByIdAndDelete(folderId)
@@ -54,6 +54,7 @@ router.get("/:folderId/edit", isAuthenticated, (req, res, next) => {
 
   Folder.findById(folderId)
     .then((folderToEdit) => {
+      console.log("hello==>" + folderToEdit);
       res.render("users/folder-edit", { folder: folderToEdit });
     })
     .catch((err) => next(err));
