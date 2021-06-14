@@ -1,7 +1,7 @@
 <section class="detail-folder">
-    <h1>{{this.title}}</h1>
+    <h1 class="text-center">{{this.title}}</h1>
     <section class="detail-body">
-        <div>
+        <div class="description">
             {{{this.description}}}
         </div>
             
@@ -9,8 +9,8 @@
             Keywords: {{this.keywords}}
         </div>
     </section>
-    <div class='container' style='margin: 1em'>
-        <a href="/{{this._id}}/edit" class="btn" style='margin-right: 1em'>Edit</a>
+    <div class="detail-btns">
+        <a href="/{{this._id}}/edit" class="btn">Edit</a>
         <a href="/profile" class="btn">Back</a>
     </div>
 </section>
