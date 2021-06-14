@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
+const Tab = require("../models/Tabs.model");
 const Folder = require("../models/Folders.model");
 const User = require("../models/User.model");
+
 const { isAuthenticated } = require("../Middleware/isAuthenticated");
 
 router.get("/newfolder", isAuthenticated, (req, res) => {
@@ -41,12 +43,14 @@ router.get("/profile/:folderId", isAuthenticated, (req, res) => {
     );
 });
 
-router.post("/profile/:folderId/delete", (req, res, next) => {
+router.post("/profile/:folderId/delete", async (req, res, next) => {
   const { folderId } = req.params;
+  await User.findByIdAndUpdate(res.locals.sessionUser._id, {
+    $pull: { folders: folderId },
+  });
 
-  Folder.findByIdAndDelete(folderId)
-    .then(() => res.redirect("/profile"))
-    .catch((err) => next(err));
+  await Folder.findByIdAndDelete(folderId);
+  return res.redirect("/profile");
 });
 
 router.get("/:folderId/edit", isAuthenticated, (req, res, next) => {
@@ -73,4 +77,32 @@ router.post("/:folderId/edit", (req, res, next) => {
     .catch((err) => next(err));
 });
 
+router.post("/newtab", (req, res, next) => {
+  const { category, description } = req.body;
+
+  Tab.create({
+    category,
+    description,
+    user: req.user,
+  })
+    .then((tab) => {
+      return User.findByIdAndUpdate(req.user._id, {
+        $push: { tabs: tab._id },
+      });
+    })
+    .then(() => {
+      res.redirect("/profile");
+    })
+    .catch((err) => next(err));
+});
+
+router.post("/profile/:tabId/delete", async (req, res, next) => {
+  const { tabId } = req.params;
+  await User.findByIdAndUpdate(res.locals.sessionUser._id, {
+    $pull: { tabs: tabId },
+  });
+
+  await Tab.findByIdAndDelete(tabId);
+  return res.redirect("/profile");
+});
 module.exports = router;

@@ -7,6 +7,7 @@ const saltRounds = 10;
 
 const User = require("../models/User.model");
 const Folder = require("../models/Folders.model");
+const Tab = require("../models/Tabs.model");
 const { isAuthenticated } = require("../Middleware/isAuthenticated");
 
 router.get("/signup", (req, res) => {
@@ -64,7 +65,9 @@ router.get("/profile", isAuthenticated, (req, res) => {
   if (req.user.folders !== []) {
     User.findOne({ username: req.user.username })
       .populate("folders")
+      .populate("tabs")
       .then((user) => {
+        console.log(user);
         res.render("users/profile", { user: user });
       })
       .catch((err) =>

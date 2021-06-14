@@ -25,23 +25,26 @@
   </section>
 
   <section class="side side-right">
-    <a href="#"><img src="Images/add.png" width="50px" disabled/></a>
-
-    <form action="/newtab" method="POST" class="side-text">
-    <div class="form-div">
-      <label for="title" class="form-lbl"> Folder name </label>
-      <input type="text" name="title" placeholder="Folder name" class="form-input" />
+    <form action="/newtab" method="POST"class="side-text">
+    <div class="form-div"   >
+      <select name="category" class="form-input" height="10">
+        <option value=" ">Pick a category</option>
+        <option name="video" value="video">Video</option>
+        <option name="article" value="article">Article</option>
+        <option name="podcast" value="podcast">Podcast or Audio</option>
+      </select>
     </div>
     <div class="form-div">
-      <label for="keywords" class="form-lbl"> Keywords </label>
-      <input type="text" name="keywords" placeholder="Add keywords" class="form-input" />
-    </div>
-    <div class="form-div">
-      <textarea name="description" class="editor">
-      </textarea>
+      <input type="text" name="description" class="form-input" placeholder="Add the link"></input>
     </div>
     <button type="submit" class="btn">Save</button>
-    <a href="/profile" class="btn">Back</a>
+
+    <section>
+      {{#each user.tabs}}
+              <h3>{{this.category}}</h3>
+              <a href="{{this.description}}">{{this.description}}</a>
+      {{/each}}
+    </section> 
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
