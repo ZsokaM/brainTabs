@@ -1,13 +1,12 @@
 :root {
-  --russianViolet: #240046;
-  --persianIndigo: #3c096c;
-  --purple: #5a189a;
-  --frenchViolet: #7b2cbf;
-  --lightPurple: #9d4edd;
-  --heatWave: #ff7900;
-  --darkOrange: #ff8500;
-  --yellOrange: #ff9100;
-  --lightOrange: #ff9e00;
+  --light-blue: #0466c8;
+  --medium-light-blue: #0353a4;
+  --medium-blue: #023e7d;
+  --grey-blue: #002855;
+  --dark-blue: #001845;
+  --grey: #33415c;
+  --medium-grey: #5c677d;
+  --light-grey: #979dac;
 }
 
 *,
@@ -26,17 +25,37 @@ body {
   height: 100vh;
   width: 100vw;
   font-family: "Roboto", sans-serif;
-  color: darkslategrey;
+  color: var(--light-grey);
   display: flex;
   flex-direction: column;
 }
 
 main {
   flex: 1 0 auto;
+  top: 40%;
 }
 
 .container {
   display: flex;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn {
+  color: white;
+  background-color: var(--medium-blue);
+  text-decoration: none;
+  padding: 0.5em;
+  margin: 0 auto;
+  border-radius: 10%;
+  font-size: 1em;
+}
+
+.btn:hover {
+  color: white;
+  background-color: var(--light-blue);
 }
 
 /* --------------------------------------------------------- */
@@ -47,7 +66,7 @@ main {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--frenchViolet);
+  background-color: var(--medium-blue);
   padding: 0.75em;
 }
 
@@ -70,7 +89,7 @@ main {
 .nav-btn {
   width: 3em;
   color: white;
-  border: 1px solid white;
+  border: 1px solid var(--light-blue);
   text-decoration: none;
   padding: 0.5em;
   margin: 0;
@@ -78,24 +97,8 @@ main {
 }
 
 .nav-btn:hover {
-  color: var(--purple);
-  background-color: var(--yellOrange);
-}
-
-.btn {
-  width: 50px;
-  color: white;
-  background-color: var(--darkOrange);
-  text-decoration: none;
-  padding: 0.5em;
-  margin: 0;
-  border-radius: 10%;
-  font-size: 1em;
-}
-
-.btn:hover {
-  color: var(--yellOrange);
-  background-color: var(--purple);
+  color: var(--light-blue);
+  background-color: white;
 }
 
 /* --------------------------------------------------------- */
@@ -116,24 +119,10 @@ main {
 .form-input {
   width: 30em;
   height: 4em;
-  border: 1px solid var(--heatWave);
-  border-radius: 3%;
+  border: 1px solid var(--medium-blue);
+  border-radius: 1.2%;
   padding: 1em;
   margin-left: 1em;
-}
-
-.form-btn {
-  color: white;
-  background-color: var(--darkOrange);
-  padding: 0.75em;
-  margin: 0 auto;
-  border-radius: 10%;
-  border: 1px solid;
-}
-
-.form-btn:hover {
-  color: var(--yellOrange);
-  background-color: var(--purple);
 }
 
 .error {
@@ -143,20 +132,32 @@ main {
 /* --------------------------------------------------------- */
 .main-header {
   text-align: center;
-  background-color: var(--frenchViolet);
+  background: linear-gradient(var(--medium-blue), var(--light-blue));
+
   margin: 0;
-  padding-bottom: 0.5em;
   color: white;
 }
+
 .side {
   height: 95vh;
   width: min(95%);
   padding: 2em;
 }
 .side-left {
-  background-color: var(--yellOrange);
+  background-image: linear-gradient(
+    to top right,
+    var(--dark-blue),
+    var(--light-blue)
+  );
 }
 
+.side-right {
+  background-image: linear-gradient(
+    to top left,
+    var(--dark-blue),
+    var(--light-blue)
+  );
+}
 .folder-sep {
   display: flex;
   flex-wrap: wrap;
@@ -164,6 +165,10 @@ main {
 
 .side-text {
   width: 50%;
+}
+
+.side-text .form-div {
+  justify-content: space-evenly;
 }
 
 .card-layout {
@@ -206,12 +211,12 @@ main {
 }
 
 .flip-card-front {
-  background-color: var(--lightOrange);
+  background-color: transparent;
   color: white;
 }
 
 .flip-card-back {
-  background-color: var(--lightPurple);
+  background-color: var(--light-blue: #0466c8);
   color: white;
   transform: rotateY(180deg);
 }
@@ -219,19 +224,30 @@ main {
 .detail-folder {
   margin: 1em;
   padding: 1em;
+  height: 95%;
   display: flex;
   flex-direction: column;
   width: 55vw;
-  border: 1px solid black;
 }
 
 .detail-body {
   width: 100%;
 }
+
+.detail-btns {
+  text-align: center;
+}
+
+.description {
+  height: 75vh;
+  border: 1px solid var(--light-blue);
+  border-radius: 5px;
+  padding: 0.5em;
+}
 /* --------------------------------------------------------- */
 .footer {
-  color: white;
-  font-size: 1em;
+  color: var(--light-grey);
+  font-size: 0.5em;
   justify-content: center;
   text-decoration: none;
 }

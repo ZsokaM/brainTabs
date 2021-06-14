@@ -1,6 +1,7 @@
-<h1 class="main-header">My dashboard</h1>
 
+<h1 class="main-header">My dashboard</h1>
 <section class="container">
+  
   <section class="side side-left">
     <a href="/newfolder"><img src="Images/add.png" width="50px" /></a>
 
@@ -21,11 +22,30 @@
         </div>
       {{/each}}
     </section> 
-</div>
-
   </section>
+
   <section class="side side-right">
     <a href="#"><img src="Images/add.png" width="50px" disabled/></a>
-    <p>New features coming soon</p>
+
+    <form action="/newtab" method="POST" class="side-text">
+    <div class="form-div">
+      <label for="title" class="form-lbl"> Folder name </label>
+      <input type="text" name="title" placeholder="Folder name" class="form-input" />
+    </div>
+    <div class="form-div">
+      <label for="keywords" class="form-lbl"> Keywords </label>
+      <input type="text" name="keywords" placeholder="Add keywords" class="form-input" />
+    </div>
+    <div class="form-div">
+      <textarea name="description" class="editor">
+      </textarea>
+    </div>
+    <button type="submit" class="btn">Save</button>
+    <a href="/profile" class="btn">Back</a>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
   </section>
 </section>
