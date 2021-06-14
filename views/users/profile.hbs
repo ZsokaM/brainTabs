@@ -39,11 +39,18 @@
     </div>
     <button type="submit" class="btn">Save</button>
 
-    <section>
-      {{#each user.tabs}}
-              <h3>{{this.category}}</h3>
-              <a href="{{this.description}}">{{this.description}}</a>
-      {{/each}}
+    <section class="tabs">
+      {{#if user.tabs}}
+        {{#each user.tabs}}
+          <h3>{{this.category}}</h3>
+          <a href="{{this.description}}">{{this.description}}</a>
+          <form action="/newtab/{{this._id}}/delete" method="POST">
+             <button type="submit" class="btn" style="font-size: smaller;">Delete</button>
+          </form>
+        {{/each}}
+      {{else}}
+        <h3 class="text-center" style="color:white">Save nice videos, articles and podcasts for later</h3>
+      {{/if}}
     </section> 
 
     {{#if errorMessage}}

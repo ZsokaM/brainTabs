@@ -67,7 +67,6 @@ router.get("/profile", isAuthenticated, (req, res) => {
       .populate("folders")
       .populate("tabs")
       .then((user) => {
-        console.log(user);
         res.render("users/profile", { user: user });
       })
       .catch((err) =>

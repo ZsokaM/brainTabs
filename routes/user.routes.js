@@ -96,9 +96,10 @@ router.post("/newtab", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.post("/profile/:tabId/delete", async (req, res, next) => {
+router.post("/newtab/:tabId/delete", async (req, res) => {
   const { tabId } = req.params;
-  await User.findByIdAndUpdate(res.locals.sessionUser._id, {
+
+  await User.findByIdAndUpdate(req.user._id, {
     $pull: { tabs: tabId },
   });
 

@@ -227,6 +227,11 @@ button {
   color: white;
   transform: rotateY(180deg);
 }
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+}
 /* --------------------------------------------------------- */
 .detail-folder {
   margin: 1em;
@@ -251,6 +256,7 @@ button {
   border-radius: 5px;
   padding: 0.5em;
 }
+
 /* --------------------------------------------------------- */
 .footer {
   color: var(--light-grey);
