@@ -83,30 +83,36 @@ router.post("/:folderId/edit", (req, res, next) => {
 });
 
 router.post("/newtab", async (req, res, next) => {
-  const { category, description } = req.body;
+  try {
+    const { category, description } = req.body;
 
-  const link = await axios.post("https://api.linkpreview.net", {
-    q: `${description}`,
-    key: `${process.env.LINK_KEY}`,
-  });
+    const link = await axios.post("https://api.linkpreview.net", {
+      q: description,
+      key: process.env.LINK_KEY,
+    });
 
-  Tab.create({
-    category,
-    title: link.data.title,
-    description: link.data.description,
-    image: link.data.image,
-    url: link.data.url,
-    user: req.user,
-  })
-    .then((tab) => {
-      return User.findByIdAndUpdate(req.user._id, {
-        $push: { tabs: tab._id },
-      });
+    const { title, description: shortDescript, image, url } = link.data;
+
+    Tab.create({
+      category,
+      title,
+      description: shortDescript,
+      image,
+      url,
+      user: req.user,
     })
-    .then(() => {
-      res.redirect("/profile");
-    })
-    .catch((err) => next(err));
+      .then((tab) => {
+        return User.findByIdAndUpdate(req.user._id, {
+          $push: { tabs: tab._id },
+        });
+      })
+      .then(() => {
+        res.redirect("/profile");
+      })
+      .catch((err) => next(err));
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.post("/newtab/:tabId/delete", async (req, res) => {

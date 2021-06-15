@@ -28,7 +28,7 @@
     <form action="/newtab" method="POST" >
       <div class="form-div">
         <select name="category" class="form-input" height="10">
-          <option value=" ">Pick a category</option>
+          <option value="">Pick a category</option>
           <option name="video" value="video">Video</option>
           <option name="article" value="article">Article</option>
           <option name="podcast" value="podcast">Podcast or Audio</option>
@@ -37,7 +37,7 @@
         </select>
       </div>
       <div class="form-div">
-        <input type="text" name="description" class="form-input" placeholder="Add the link"></input>
+        <input type="text" name="desription" class="form-input" placeholder="Add the link">
       </div>
       <button type="submit" class="btn">Save</button>
     </form>
@@ -64,7 +64,7 @@
           </article>
         {{/each}}
       {{else}}
-        <h3 class="text-center" style="color:white">Save nice videos, articles and podcasts for later</h3>
+        <h3 class="text-center">Save nice videos, articles, podcasts or any other link for later</h3>
       {{/if}}
     </section> 
 

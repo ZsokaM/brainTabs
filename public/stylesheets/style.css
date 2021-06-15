@@ -242,6 +242,9 @@ button {
   align-content: center;
   align-items: center;
 }
+.tab h3 {
+  color: white;
+}
 
 .link-container {
   display: flex;
