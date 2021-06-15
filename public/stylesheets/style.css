@@ -164,6 +164,13 @@ button {
     var(--dark-blue),
     var(--light-blue)
   );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.side-right .btn {
+  margin: auto;
 }
 .folder-sep {
   display: flex;
@@ -231,6 +238,31 @@ button {
 .tabs {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.link-container {
+  display: flex;
+  background-color: transparent;
+  border: 1px solid white;
+  width: 75%;
+  color: white;
+  font-size: 0.75em;
+  margin: 0.5em;
+  align-items: center;
+  line-height: 1;
+  padding: 0.25em;
+}
+
+.link-container a {
+  color: var(--light-grey);
+}
+.link-img {
+  width: 75px;
+  height: 75px;
+  margin: 0.5em;
 }
 /* --------------------------------------------------------- */
 .detail-folder {

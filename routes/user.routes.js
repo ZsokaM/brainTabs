@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const axios = require("axios");
 
 const Tab = require("../models/Tabs.model");
 const Folder = require("../models/Folders.model");
@@ -45,12 +46,16 @@ router.get("/profile/:folderId", isAuthenticated, (req, res) => {
 
 router.post("/profile/:folderId/delete", async (req, res, next) => {
   const { folderId } = req.params;
-  await User.findByIdAndUpdate(res.locals.sessionUser._id, {
-    $pull: { folders: folderId },
-  });
+  try {
+    await User.findByIdAndUpdate(res.locals.sessionUser._id, {
+      $pull: { folders: folderId },
+    });
 
-  await Folder.findByIdAndDelete(folderId);
-  return res.redirect("/profile");
+    await Folder.findByIdAndDelete(folderId);
+    return res.redirect("/profile");
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.get("/:folderId/edit", isAuthenticated, (req, res, next) => {
@@ -77,12 +82,20 @@ router.post("/:folderId/edit", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.post("/newtab", (req, res, next) => {
+router.post("/newtab", async (req, res, next) => {
   const { category, description } = req.body;
+
+  const link = await axios.post("https://api.linkpreview.net", {
+    q: `${description}`,
+    key: `${process.env.LINK_KEY}`,
+  });
 
   Tab.create({
     category,
-    description,
+    title: link.data.title,
+    description: link.data.description,
+    image: link.data.image,
+    url: link.data.url,
     user: req.user,
   })
     .then((tab) => {
@@ -98,12 +111,14 @@ router.post("/newtab", (req, res, next) => {
 
 router.post("/newtab/:tabId/delete", async (req, res) => {
   const { tabId } = req.params;
-
-  await User.findByIdAndUpdate(req.user._id, {
-    $pull: { tabs: tabId },
-  });
-
-  await Tab.findByIdAndDelete(tabId);
-  return res.redirect("/profile");
+  try {
+    await Tab.findByIdAndDelete(tabId);
+    await User.findByIdAndUpdate(req.user._id, {
+      $pull: { tabs: tabId },
+    });
+    return res.redirect("/profile");
+  } catch (err) {
+    next(err);
+  }
 });
 module.exports = router;
