@@ -27,17 +27,17 @@
   <section class="side side-right">
     <form action="/newtab" method="POST" >
       <div class="form-div">
-        <select name="category" class="form-input" height="10">
-          <option value="">Pick a category</option>
+        <select name="category" class="form-input" height="10" required>
+          <option value=" ">Pick a category</option>
           <option name="video" value="video">Video</option>
           <option name="article" value="article">Article</option>
           <option name="podcast" value="podcast">Podcast or Audio</option>
           <option name="book" value="book">Book</option>
-          <option name="fullsite" value="fullsite">Web site</option>
+          <option name="fullsite" value="fullsite">Website</option>
         </select>
       </div>
       <div class="form-div">
-        <input type="text" name="desription" class="form-input" placeholder="Add the link">
+        <input type="text" name="description" class="form-input" placeholder="Add the link"/>
       </div>
       <button type="submit" class="btn">Save</button>
     </form>

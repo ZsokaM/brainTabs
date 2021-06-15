@@ -102,6 +102,7 @@ router.post("/newtab", async (req, res, next) => {
       user: req.user,
     })
       .then((tab) => {
+        console.log(tab);
         return User.findByIdAndUpdate(req.user._id, {
           $push: { tabs: tab._id },
         });
