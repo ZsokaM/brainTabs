@@ -25,27 +25,52 @@
   </section>
 
   <section class="side side-right">
-    <a href="#"><img src="Images/add.png" width="50px" disabled/></a>
+    <form action="/newtab" method="POST" >
+      <div class="form-div">
+        <select name="category" class="form-input" height="10" required>
+          <option value="">Pick a category</option>
+          <option name="video" value="video">Video</option>
+          <option name="article" value="article">Article</option>
+          <option name="podcast" value="podcast">Podcast or Audio</option>
+          <option name="book" value="book">Book</option>
+          <option name="fullsite" value="fullsite">Website</option>
+        </select>
+      </div>
+      <div class="form-div">
+        <input type="text" name="description" class="form-input" placeholder="Add the link"/>
+      </div>
+      <button type="submit" class="btn">Save</button>
+    </form>
 
-    <form action="/newtab" method="POST" class="side-text">
-    <div class="form-div">
-      <label for="title" class="form-lbl"> Folder name </label>
-      <input type="text" name="title" placeholder="Folder name" class="form-input" />
-    </div>
-    <div class="form-div">
-      <label for="keywords" class="form-lbl"> Keywords </label>
-      <input type="text" name="keywords" placeholder="Add keywords" class="form-input" />
-    </div>
-    <div class="form-div">
-      <textarea name="description" class="editor">
-      </textarea>
-    </div>
-    <button type="submit" class="btn">Save</button>
-    <a href="/profile" class="btn">Back</a>
+    <section class="tabs">
+      {{#if user.tabs}}
+        {{#each user.tabs}}
+          <article class="link-preview-container">
+            <div>
+              {{#if this.image}}
+                <img src="{{this.image}}" alt="link-image" class="link-img"/>
+              {{else}}
+                <img src="Images/link.png" alt="link-default-image" class="link-preview-img"/>
+              {{/if}}
+            </div>
+            <div>
+              <h3>{{this.category}}</h3>
+              <a href="{{this.url}}">{{this.title}}</a>
+              <p>{{this.description}}</p>
+              <form action="/newtab/{{this._id}}/delete" method="POST">
+                <button type="submit" class="btn" style="font-size: smaller;">Delete</button>
+              </form>
+            </div>
+          </article>
+        {{/each}}
+      {{else}}
+        <h3 class="text-center">Save nice videos, articles, podcasts or any other link for later</h3>
+      {{/if}}
+    </section> 
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
-  </form>
+  
   </section>
 </section>

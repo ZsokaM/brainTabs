@@ -25,7 +25,7 @@ body {
   height: 100vh;
   width: 100vw;
   font-family: "Roboto", sans-serif;
-  color: var(--light-grey);
+  color: var(--grey);
   display: flex;
   flex-direction: column;
 }
@@ -33,6 +33,11 @@ body {
 main {
   flex: 1 0 auto;
   top: 40%;
+}
+
+button {
+  border: none;
+  text-decoration: none;
 }
 
 .container {
@@ -72,13 +77,16 @@ main {
 
 .logo {
   width: 50px;
+  text-decoration: none;
+  color: white;
+  font-size: 2em;
 }
 
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2em 2em;
+  padding: 2em;
 }
 
 .hero-img {
@@ -120,7 +128,7 @@ main {
   width: 30em;
   height: 4em;
   border: 1px solid var(--medium-blue);
-  border-radius: 1.2%;
+  border-radius: 3px;
   padding: 1em;
   margin-left: 1em;
 }
@@ -133,7 +141,6 @@ main {
 .main-header {
   text-align: center;
   background: linear-gradient(var(--medium-blue), var(--light-blue));
-
   margin: 0;
   color: white;
 }
@@ -157,6 +164,13 @@ main {
     var(--dark-blue),
     var(--light-blue)
   );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.side-right .btn {
+  margin: auto;
 }
 .folder-sep {
   display: flex;
@@ -220,6 +234,39 @@ main {
   color: white;
   transform: rotateY(180deg);
 }
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.tab h3 {
+  color: white;
+}
+
+.link-preview-container {
+  display: flex;
+  background-color: transparent;
+  border: 1px solid white;
+  width: 75%;
+  color: white;
+  font-size: 0.75em;
+  margin: 0.5em;
+  align-items: center;
+  line-height: 1;
+  padding: 0.25em;
+}
+
+.link-preview-container a {
+  color: var(--light-grey);
+}
+.link-preview-img {
+  width: 75px;
+  height: 75px;
+  margin: 0.5em;
+}
 /* --------------------------------------------------------- */
 .detail-folder {
   margin: 1em;
@@ -244,10 +291,15 @@ main {
   border-radius: 5px;
   padding: 0.5em;
 }
+
 /* --------------------------------------------------------- */
 .footer {
   color: var(--light-grey);
-  font-size: 0.5em;
+  font-size: 0.75em;
   justify-content: center;
+}
+
+.footer a {
   text-decoration: none;
+  color: var(--light-grey);
 }

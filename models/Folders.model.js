@@ -9,7 +9,6 @@ const folderSchema = new Schema(
     },
     keywords: {
       type: String,
-      required: [true, "Add at least 1 keyword"],
       trim: true,
     },
     description: String,
