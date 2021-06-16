@@ -28,7 +28,7 @@
     <form action="/newtab" method="POST" >
       <div class="form-div">
         <select name="category" class="form-input" height="10" required>
-          <option value=" ">Pick a category</option>
+          <option value="">Pick a category</option>
           <option name="video" value="video">Video</option>
           <option name="article" value="article">Article</option>
           <option name="podcast" value="podcast">Podcast or Audio</option>
@@ -45,12 +45,12 @@
     <section class="tabs">
       {{#if user.tabs}}
         {{#each user.tabs}}
-          <article class="link-container">
+          <article class="link-preview-container">
             <div>
               {{#if this.image}}
-                <img src="{{this.image}}" alt="link-image" class="link-img"></img>
+                <img src="{{this.image}}" alt="link-image" class="link-img"/>
               {{else}}
-                <img src="Images/link.png" alt="link-default-image" class="link-img"></img>
+                <img src="Images/link.png" alt="link-default-image" class="link-preview-img"/>
               {{/if}}
             </div>
             <div>

@@ -86,7 +86,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2em 2em;
+  padding: 2em;
 }
 
 .hero-img {
@@ -246,7 +246,7 @@ button {
   color: white;
 }
 
-.link-container {
+.link-preview-container {
   display: flex;
   background-color: transparent;
   border: 1px solid white;
@@ -259,10 +259,10 @@ button {
   padding: 0.25em;
 }
 
-.link-container a {
+.link-preview-container a {
   color: var(--light-grey);
 }
-.link-img {
+.link-preview-img {
   width: 75px;
   height: 75px;
   margin: 0.5em;
