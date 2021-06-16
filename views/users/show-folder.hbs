@@ -1,15 +1,15 @@
 <section class="detail-folder">
     <h1 class="text-center">{{this.title}}</h1>
-    <section class="detail-body">
-        <div class="description">
-            {{{this.description}}}
-        </div>
-            
-        <div>
-            Keywords: {{this.keywords}}
-        </div>
+    
+    <section class="description">
+        {{{this.description}}}
     </section>
-    <div class="detail-btns">
+            
+     <section>
+         Keywords: {{this.keywords}}
+    </section>
+    
+    <div class="detail-btn">
         <a href="/{{this._id}}/edit" class="btn">Edit</a>
         <a href="/profile" class="btn">Back</a>
     </div>
