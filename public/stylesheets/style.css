@@ -225,8 +225,7 @@ button {
 }
 
 .flip-card-back {
-  background-color: var(--light-blue: #0466c8);
-  color: white;
+  background-color: var(--light-blue);
   transform: rotateY(180deg);
 }
 
