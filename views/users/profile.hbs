@@ -1,6 +1,7 @@
-<h1 class="main-header">My dashboard</h1>
 
+<h1 class="main-header">My dashboard</h1>
 <section class="container">
+  
   <section class="side side-left">
     <a href="/newfolder"><img src="Images/add.png" width="50px" /></a>
 
@@ -12,7 +13,7 @@
               <h2>{{this.title}}</h2>
             </div>
             <div class="flip-card-back">
-              <a href="/profile/{{this._id}}"><img src="Images/book.png" width="30px"></a>
+              <a href="/profile/{{this._id}}"><img src="Images/book.png" width="50px"></a>
               <form action="/profile/{{this._id}}/delete" method="POST">
                   <button type="submit" style="border: 0; widht: 30px;background: transparent"><img src="Images/delete.png" width="50px"></button>
               </form>
@@ -21,11 +22,55 @@
         </div>
       {{/each}}
     </section> 
-</div>
-
   </section>
+
   <section class="side side-right">
-    <a href="#"><img src="Images/add.png" width="50px" disabled/></a>
-    <p>New features coming soon</p>
+    <form action="/newtab" method="POST" >
+      <div class="form-div">
+        <select name="category" class="form-input" height="10" required>
+          <option value="">Pick a category</option>
+          <option name="video" value="video">Video</option>
+          <option name="article" value="article">Article</option>
+          <option name="podcast" value="podcast">Podcast or Audio</option>
+          <option name="book" value="book">Book</option>
+          <option name="fullsite" value="fullsite">Website</option>
+        </select>
+      </div>
+      <div class="form-div">
+        <input type="text" name="description" class="form-input" placeholder="Add the link"/>
+      </div>
+      <button type="submit" class="btn">Save</button>
+    </form>
+
+    <section class="tabs">
+      {{#if user.tabs}}
+        {{#each user.tabs}}
+          <article class="link-preview-container">
+            <div>
+              {{#if this.image}}
+                <img src="{{this.image}}" alt="link-image" class="link-preview-img"/>
+              {{else}}
+                <img src="Images/link.png" alt="link-default-image" class="link-preview-img"/>
+              {{/if}}
+            </div>
+            <div>
+              <h3>{{this.category}}</h3>
+              <a href="{{this.url}}">{{this.title}}</a>
+              <p>{{this.description}}</p>
+              <form action="/newtab/{{this._id}}/delete" method="POST">
+                <button type="submit" class="btn" style="font-size: smaller;">Delete</button>
+              </form>
+            </div>
+          </article>
+        {{/each}}
+      {{else}}
+        <h3 class="text-center">Save nice videos, articles, podcasts or any other link for later</h3>
+      {{/if}}
+    </section> 
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  
   </section>
 </section>

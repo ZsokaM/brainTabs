@@ -1,13 +1,12 @@
 :root {
-  --russianViolet: #240046;
-  --persianIndigo: #3c096c;
-  --purple: #5a189a;
-  --frenchViolet: #7b2cbf;
-  --lightPurple: #9d4edd;
-  --heatWave: #ff7900;
-  --darkOrange: #ff8500;
-  --yellOrange: #ff9100;
-  --lightOrange: #ff9e00;
+  --light-blue: #0466c8;
+  --medium-light-blue: #0353a4;
+  --medium-blue: #023e7d;
+  --grey-blue: #002855;
+  --dark-blue: #001845;
+  --grey: #33415c;
+  --medium-grey: #5c677d;
+  --light-grey: #979dac;
 }
 
 *,
@@ -26,15 +25,45 @@ body {
   height: 100vh;
   width: 100vw;
   font-family: "Roboto", sans-serif;
-  color: darkslategrey;
+  color: var(--grey);
   display: flex;
   flex-direction: column;
 }
 
 main {
   flex: 1 0 auto;
+  top: 40%;
 }
 
+button {
+  border: none;
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn {
+  color: white;
+  background-color: var(--medium-blue);
+  text-decoration: none;
+  padding: 0.5em;
+  margin: 0 auto;
+  border-radius: 10%;
+  font-size: 1em;
+}
+
+.btn:hover {
+  color: white;
+  background-color: var(--light-blue);
+}
+
+/* --------------------------------------------------------- */
 .navbar,
 .footer {
   flex-shrink: 0;
@@ -42,19 +71,22 @@ main {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--frenchViolet);
-  padding: 0.75em;
+  background-color: var(--medium-blue);
+  padding: 1em;
 }
 
 .logo {
   width: 50px;
+  text-decoration: none;
+  color: white;
+  font-size: 2em;
 }
 
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2em 2em;
+  padding: 2em;
 }
 
 .hero-img {
@@ -65,7 +97,7 @@ main {
 .nav-btn {
   width: 3em;
   color: white;
-  border: 1px solid white;
+  border: 1px solid var(--light-blue);
   text-decoration: none;
   padding: 0.5em;
   margin: 0;
@@ -73,26 +105,11 @@ main {
 }
 
 .nav-btn:hover {
-  color: var(--purple);
-  background-color: var(--yellOrange);
+  color: var(--light-blue);
+  background-color: white;
 }
 
-.btn {
-  width: 50px;
-  color: white;
-  background-color: var(--darkOrange);
-  text-decoration: none;
-  padding: 0.5em;
-  margin: 0;
-  border-radius: 10%;
-  font-size: 1em;
-}
-
-.btn:hover {
-  color: var(--yellOrange);
-  background-color: var(--purple);
-}
-
+/* --------------------------------------------------------- */
 .signup {
   display: flex;
   flex-direction: column;
@@ -108,59 +125,54 @@ main {
 }
 
 .form-input {
-  width: 30em;
+  width: 40em;
   height: 4em;
-  border: 1px solid var(--heatWave);
-  border-radius: 3%;
+  border: 1px solid var(--medium-blue);
+  border-radius: 3px;
   padding: 1em;
   margin-left: 1em;
-}
-
-.form-btn {
-  color: white;
-  background-color: var(--darkOrange);
-  padding: 0.75em;
-  margin: 0 auto;
-  border-radius: 10%;
-  border: 1px solid;
-}
-
-.form-btn:hover {
-  color: var(--yellOrange);
-  background-color: var(--purple);
 }
 
 .error {
   color: red;
 }
 
-.container {
-  display: flex;
-}
-
+/* --------------------------------------------------------- */
 .main-header {
   text-align: center;
-  background-color: var(--frenchViolet);
+  background: linear-gradient(var(--medium-blue), var(--light-blue));
   margin: 0;
-  padding-bottom: 0.5em;
   color: white;
+  padding-bottom: 0.25em;
 }
+
 .side {
   height: 95vh;
   width: min(95%);
   padding: 2em;
 }
-.side-left {
-  background-color: var(--yellOrange);
+
+.side-right {
+  background-image: linear-gradient(
+    to top left,
+    var(--dark-blue),
+    var(--light-blue)
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.folder-sep {
-  display: flex;
-  flex-wrap: wrap;
+.side-right .btn {
+  margin: auto;
 }
 
 .side-text {
   width: 50%;
+}
+
+.side-text .form-div {
+  justify-content: space-evenly;
 }
 
 .card-layout {
@@ -183,6 +195,11 @@ main {
   transition: transform 0.8s;
   transform-style: preserve-3d;
   border: 1px solid white;
+  background-image: linear-gradient(
+    to top right,
+    var(--dark-blue),
+    var(--light-blue)
+  );
 }
 
 .flip-card:hover .flip-card-inner {
@@ -203,31 +220,82 @@ main {
 }
 
 .flip-card-front {
-  background-color: var(--lightOrange);
+  background-color: transparent;
   color: white;
 }
 
 .flip-card-back {
-  background-color: var(--lightPurple);
+  background-color: var(--light-blue: #0466c8);
   color: white;
   transform: rotateY(180deg);
 }
 
-.detail-folder {
-  margin: 1em;
-  padding: 1em;
+.tabs {
   display: flex;
   flex-direction: column;
-  width: 55vw;
-  border: 1px solid black;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.tab h3 {
+  color: white;
 }
 
-.detail-body {
-  width: 100%;
-}
-.footer {
+.link-preview-container {
+  display: flex;
+  background-color: transparent;
+  border: 1px solid var(--medium-blue);
+  width: 75%;
   color: white;
-  font-size: 1em;
+  font-size: 0.75em;
+  margin: 0.5em;
+  align-items: center;
+  line-height: 1;
+  padding: 0.25em;
+}
+
+.link-preview-container a {
+  color: var(--light-grey);
+}
+.link-preview-img {
+  width: 75px;
+  height: 75px;
+  margin: 0.5em;
+}
+/* --------------------------------------------------------- */
+.folder-container {
+  display: flex;
   justify-content: center;
+  padding-bottom: 1em;
+}
+
+.detail-folder {
+  margin: 0 auto;
+  padding: 1em;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+.detail-btn {
+  margin: 0 auto;
+}
+.description {
+  height: 75vh;
+  border: 1px solid var(--light-blue);
+  border-radius: 5px;
+  padding: 0.5em;
+}
+
+/* --------------------------------------------------------- */
+.footer {
+  color: var(--light-grey);
+  font-size: 0.75em;
+  justify-content: center;
+}
+
+.footer a {
   text-decoration: none;
+  color: var(--light-grey);
 }

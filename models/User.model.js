@@ -21,7 +21,7 @@ const userSchema = new Schema(
     tabs: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Tabs",
+        ref: "Tab",
       },
     ],
     folders: [

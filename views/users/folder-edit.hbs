@@ -1,8 +1,6 @@
-<h1>Edit folder page</h1>
+<h1 class="text-center">Edit folder page</h1>
 
-
-
-<div class="folder-sep">
+<div class="folder-container">
   <form action="/{{folder._id}}/edit" method="POST">
     <div class="form-div">
       <label> Folder name 
@@ -19,12 +17,13 @@
         {{folder.description}}
       </textarea>
     </div>
-    <button type="submit" class="form-btn">Save</button>
-
+    <div class="detail-btn">
+      <button type="submit" class="btn">Save</button>
+      <a href="/profile" class="btn">Back</a>
+    </div>
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
   </form> 
 
 </div>
-

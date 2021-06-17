@@ -1,7 +1,7 @@
-<h1>New folder page</h1>
+<h1 class="text-center">New folder page</h1>
 
-<div class="folder-sep">
-  <form action="/newfolder" method="POST" class="side-text">
+<div class="folder-container">
+  <form action="/newfolder" method="POST">
     <div class="form-div">
       <label for="title" class="form-lbl"> Folder name </label>
       <input type="text" name="title" placeholder="Folder name" class="form-input" />
@@ -14,17 +14,15 @@
       <textarea name="description" class="editor">
       </textarea>
     </div>
-    <button type="submit" class="form-btn">Save</button>
-
+    <div class="detail-btn">
+      <button type="submit" class="btn">Save</button>
+      <a href="/profile" class="btn">Back</a>
+    </div>
+    
+  
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
   </form>
-
-  <section>
-    <a href="/newtab"><img src="Images/add.png" width="30px" /></a>
-    <p>You can add references and notes at the same time</p>
-  </section>
-
 </div>
 

@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const axios = require("axios");
 
+const Tab = require("../models/Tabs.model");
 const Folder = require("../models/Folders.model");
 const User = require("../models/User.model");
+
 const { isAuthenticated } = require("../Middleware/isAuthenticated");
 
 router.get("/newfolder", isAuthenticated, (req, res) => {
@@ -41,12 +44,18 @@ router.get("/profile/:folderId", isAuthenticated, (req, res) => {
     );
 });
 
-router.post("/profile/:folderId/delete", (req, res, next) => {
+router.post("/profile/:folderId/delete", async (req, res, next) => {
   const { folderId } = req.params;
+  try {
+    await User.findByIdAndUpdate(res.locals.sessionUser._id, {
+      $pull: { folders: folderId },
+    });
 
-  Folder.findByIdAndDelete(folderId)
-    .then(() => res.redirect("/profile"))
-    .catch((err) => next(err));
+    await Folder.findByIdAndDelete(folderId);
+    return res.redirect("/profile");
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.get("/:folderId/edit", isAuthenticated, (req, res, next) => {
@@ -54,7 +63,6 @@ router.get("/:folderId/edit", isAuthenticated, (req, res, next) => {
 
   Folder.findById(folderId)
     .then((folderToEdit) => {
-      console.log("hello==>" + folderToEdit);
       res.render("users/folder-edit", { folder: folderToEdit });
     })
     .catch((err) => next(err));
@@ -74,4 +82,49 @@ router.post("/:folderId/edit", (req, res, next) => {
     .catch((err) => next(err));
 });
 
+router.post("/newtab", async (req, res, next) => {
+  try {
+    const { category, description } = req.body;
+
+    const link = await axios.post("https://api.linkpreview.net", {
+      q: description,
+      key: process.env.LINK_KEY,
+    });
+
+    const { title, description: shortDescript, image, url } = link.data;
+
+    Tab.create({
+      category,
+      title,
+      description: shortDescript,
+      image,
+      url,
+      user: req.user,
+    })
+      .then((tab) => {
+        return User.findByIdAndUpdate(req.user._id, {
+          $push: { tabs: tab._id },
+        });
+      })
+      .then(() => {
+        res.redirect("/profile");
+      })
+      .catch((err) => next(err));
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/newtab/:tabId/delete", async (req, res) => {
+  const { tabId } = req.params;
+  try {
+    await Tab.findByIdAndDelete(tabId);
+    await User.findByIdAndUpdate(req.user._id, {
+      $pull: { tabs: tabId },
+    });
+    return res.redirect("/profile");
+  } catch (err) {
+    next(err);
+  }
+});
 module.exports = router;
