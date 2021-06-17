@@ -13,20 +13,18 @@ const flash = require("connect-flash");
 const User = require("./models/User.model");
 
 mongoose
-  .connect(process.env.MONGODB_URI, {
+  .connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false,
   })
   .then(() =>
-    console.log(
-      `Successfully connected to the database ${process.env.MONGODB_URI}`
-    )
+    console.log(`Successfully connected to the database ${MONGODB_URI}`)
   )
   .catch((error) => {
     console.error(
-      `An error ocurred trying to connect to the database ${process.env.MONGODB_URI}: `,
+      `An error ocurred trying to connect to the database ${MONGODB_URI}: `,
       error
     );
     process.exit(1);
@@ -46,7 +44,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: SESSION_SECRET,
     resave: true,
     saveUninitialized: false,
     cookie: {
@@ -55,7 +53,7 @@ app.use(
       maxAge: 35 * 24 * 60 * 60 * 1000,
     },
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI,
+      mongoUrl: MONGODB_URI,
       ttl: 60 * 60 * 24,
     }),
   })
@@ -98,7 +96,7 @@ app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
   res.locals.sessionUser = req.user;
-  res.locals.tinyKey = process.env.TINY_KEY;
+  res.locals.tinyKey = TINY_KEY;
   next();
 });
 
