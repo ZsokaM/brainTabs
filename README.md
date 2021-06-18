@@ -31,7 +31,5 @@ If I'd continue this project, these are some of the features I'd dedicate time t
 - paper style editing (flowing text, no separate page for editing)
 - sharing functionality and multiple collaborators
 
-#### Special shout out to my fantastic classmate Sam, and teacher Michael for their input and help. 
-
 ## Contact information
 https://github.com/ZsokaM
