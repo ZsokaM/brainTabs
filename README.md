@@ -16,7 +16,7 @@ You can see the full list of dependencies in the json.package but here is a list
   * HTML & CSS
   * Handlebars
 
-### I'd like to highlight two cool APIs used for the project
+#### I'd like to highlight two cool APIs used for the project
   * [tiny](https://www.tiny.cloud/) for text editing
   * [LinkPreview](https://www.linkpreview.net/) for fetching URL info in JSON
 
