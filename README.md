@@ -22,6 +22,9 @@ You can see the full list of dependencies in the json.package but here is a list
 
 and lets not forget to mention [flaticon](https://www.flaticon.com/) and [coolors](https://coolors.co/) for their cool libraries. 
 
+## Disclaimer 
+Not compatible with mobile devices. Only tested on Chrome, Safari. 
+
 ## Features for the future
 If I'd continue this project, these are some of the features I'd dedicate time to:
 - proper design
