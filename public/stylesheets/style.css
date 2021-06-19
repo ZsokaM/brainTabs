@@ -262,6 +262,8 @@ button {
 /* --------------------------------------------------------- */
 .folder-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   padding-bottom: 1rem;
 }
@@ -276,7 +278,8 @@ button {
 }
 
 .detail-btn {
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
 .description {
   height: 75vh;
