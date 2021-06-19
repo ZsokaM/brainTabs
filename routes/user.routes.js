@@ -108,8 +108,7 @@ router.post("/newtab", async (req, res, next) => {
       })
       .then(() => {
         res.redirect("/profile");
-      })
-      .catch((err) => next(err));
+      });
   } catch (err) {
     next(err);
   }
