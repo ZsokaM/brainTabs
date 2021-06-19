@@ -301,7 +301,7 @@ button {
   color: var(--light-grey);
 }
 
-@media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+/* @media only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
   main {
     display: flex;
     flex-direction: column;
@@ -313,4 +313,4 @@ button {
     flex-direction: column;
     flex-wrap: wrap;
   }
-}
+} */
