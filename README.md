@@ -4,6 +4,8 @@
 
 BrainTabs is an app that allows you to make notes (for example while you are learning webdev and need a cheatsheet for all those git commands) and it also provides a platform to keep track of the articles, podcasts, websites, books etc. that you come across and want to store for later.
 
+***Demo:*** https://braintabs.herokuapp.com/
+
 ## Why BrainTabs?
 
 I've built this app within the realms of the Ironhack bootcamp. The assignment was to build a webapp that demonstrates what we learned so far about the "main ingredients", authentication, databases and CRUD. All clear, but I needed a topic that's _"close to home"_. The past 4 months an insane amount of information is being uploaded to our brains and in order to actually keep this info, I've been taking notes, collected resources, 3 youtube videos are playing at all times, have approx 25 tabs open constantly with useful snippets and articles with the hope that the chaos will somehow magically get organized.
